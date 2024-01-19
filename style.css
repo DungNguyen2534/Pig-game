@@ -194,6 +194,7 @@ main {
   height: 5rem;
   padding: 2rem 2rem;
   border-radius: 50%;
+  z-index: 100;
 }
 
 .btn--how::after {
@@ -264,4 +265,29 @@ main {
 
 .hidden {
   display: none;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.shake {
+  animation: shake 0.25s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-60%) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(10deg);
+  }
+  75% {
+    transform: translateX(-40%) rotate(-10deg);
+  }
 }

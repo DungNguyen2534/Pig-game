@@ -40,7 +40,7 @@ const init = () => {
   current0.textContent = 0;
   current1.textContent = 0;
 
-  diceEl.classList.add("hidden");
+  diceEl.classList.add("hide");
   player0.classList.remove("player--winner");
   player1.classList.remove("player--winner");
   player0.classList.add("player--active");
@@ -64,9 +64,17 @@ btnRoll.addEventListener("click", () => {
     const dice = Math.trunc(Math.random() * 6) + 1;
 
     // 2. Display the dice
-    diceEl.classList.remove("hidden");
+    diceEl.classList.remove("hide");
     diceEl.src = `./dices/dice-${dice}.png`;
-
+    // Shake animation
+    diceEl.classList.add("shake");
+    diceEl.addEventListener(
+      "animationend",
+      function () {
+        diceEl.classList.remove("shake");
+      },
+      { once: true }
+    );
     // 3. Check for rolled 1: if true - loose score, switch player
     if (dice !== 1) {
       currentScore += dice;
@@ -88,7 +96,7 @@ btnHold.addEventListener("click", () => {
     // 2. Check if score >= 100, finish the game
     if (scores[activePlayer] >= 100) {
       playing = false;
-      diceEl.classList.add("hidden");
+      diceEl.classList.add("hide");
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add("player--winner");
